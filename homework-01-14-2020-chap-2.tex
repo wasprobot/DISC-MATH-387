@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\newcounter{question}
+\setcounter{question}{0}
+\begin{document}
+
+\newcommand\Que[1]{%
+   \leavevmode\par
+   \stepcounter{question}
+   \noindent
+   \thequestion. Q --- #1\par}
+
+\newcommand\Ans[2][]{%
+    \leavevmode\par\noindent
+   {\leftskip37pt
+    A --- \textbf{#1}#2\par}}
+
+\Que{How many strings are there over the alphabet {A,B,C} with exactly 10 A's, 10 B's, and 10 C's? Please write a short explanation.}
+\Ans{
+    The total number of such strings are:
+    \[
+        30\choose 10,10,10
+    \]
+    Since there are 10 A's + 10 B's + 10 C's = 30 total symbols to choose from, 
+    but among the A's, the B's and the C's there is no difference in the symbols, the number of rearrangements equals the Multinomial Coefficient:
+    \[
+        n\choose{k_1,k_2,..,k_r}
+    \]
+    }
+\end{document}
