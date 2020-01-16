@@ -1,8 +1,14 @@
 \documentclass{article}
 \usepackage{amsmath,amssymb}
+\usepackage{tikz}
 \newcounter{question}
-\setcounter{question}{0}
+\setcounter{question}{26}
 \begin{document}
+
+\newcommand*{\xMin}{1}%
+\newcommand*{\xMax}{7}%
+\newcommand*{\yMin}{1}%
+\newcommand*{\yMax}{5}%
 
 \newcommand\Que[1]{%
    \leavevmode\par
@@ -14,17 +20,42 @@
     \leavevmode\par\noindent
    {\leftskip37pt
     A --- \textbf{#1}#2\par}}
+    
+\Que{A small-town bank robber is driving his getaway car from the bank he just robbed to his hideout. The bank is at the intersection of 
+1st Street and 1st Avenue. He needs to return to his hideout at the intersection of 
+7th Street and 5th Avenue. However, one of his lookouts has reported that the town's one police officer is parked at the intersection of 
+4th Street and 4th Avenue. Assuming that the bank robber does not want to get arrested and drives only on streets and avenues, in how many ways can he safely return to his hideout? (Streets and avenues are uniformly spaced and numbered consecutively in this small town.)}
 
-\Que{How many strings are there over the alphabet {A,B,C} with exactly 10 A's, 10 B's, and 10 C's? Please write a short explanation.}
 \Ans{
-    The total number of such strings are:
+    \begin{tikzpicture}
+        \node[text width=3cm, gray] at (5,0) {streets};
+        \node[text width=3cm, gray, rotate=90] at (0,3.5) {avenues};
+    
+        \foreach \i in {\xMin,...,\xMax} {
+            \draw [very thin,gray] (\i,\yMin) -- (\i,\yMax)  node [below] at (\i,\yMin) {$\i$};
+        }
+        \foreach \i in {\yMin,...,\yMax} {
+            \draw [very thin,gray] (\xMin,\i) -- (\xMax,\i) node [left] at (\xMin,\i) {$\i$};
+        }
+        \draw [thick, green] (1,1) circle (0.1cm);
+        \draw [thick, red] (4,4) circle (0.1cm);
+        \draw [thick, blue] (7,5) circle (0.1cm);
+    \end{tikzpicture}
+
+    The total number of possible paths from $(1,1)$ to $(7,5)$ would be:
     \[
-        30\choose 10,10,10
+        \binom{(7-1)+(5-1)}{7-1} = \binom{10}{6}
     \]
-    Since there are 10 A's + 10 B's + 10 C's = 30 total symbols to choose from, 
-    but among the A's, the B's and the C's there is no difference in the symbols, the number of rearrangements equals the Multinomial Coefficient:
+    However, since we want to avoid the police officer $(4,4)$, we should
+    omit all the paths that lead to $(4,4)$ which are:
     \[
-        n\choose{k_1,k_2,..,k_r}
+        \binom{(4-1)+(4-1)}{4-1} = \binom{6}{3}
     \]
+    Hence the number of favorable paths (where our hero doesn't get arrested) are:
+    \[
+        \binom{10}{6} - \binom{6}{3}
+    \]
+
+
     }
 \end{document}
