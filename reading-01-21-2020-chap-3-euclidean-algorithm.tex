@@ -1,0 +1,53 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\newcounter{question}
+\setcounter{question}{0}
+\begin{document}
+
+\newcommand\Que[1]{%
+   \leavevmode\par
+   \stepcounter{question}
+   \noindent
+   \thequestion. Q --- #1\par}
+
+\newcommand\Ans[2][]{%
+    \leavevmode\par\noindent
+   {\leftskip37pt
+    A --- \textbf{#1}#2\par}}
+
+\Que{
+    Use the \textbf{Euclidean Algorithm} to find integers $a$ and $b$ such that 
+    $70a+182b=28$.
+    Are the integers $c$ and $d$ such that $70c+182d=30$?
+    }
+\Ans{
+    \begin{center}
+    \begin{tabular}{|c c c|} 
+    \hline
+    Original Pair & Division Expression & GCD \\ [0.5ex] 
+    \hline
+    $(182, 70)$ & $182=2\cdot{70}+\textbf{42}$ & $(70, 42)$ \\ 
+    $(70, 42)$ & $70=1\cdot{42}+\textbf{28}$ & $(42, 28)$ \\ 
+    $(42, 28)$ & $42=1\cdot{28}+\textbf{14}$ & $(28, 14)$ \\ 
+    $(28, 14)$ & $28=2\cdot{14}+\textbf{0}$ & \textbf{14}  \\ 
+    \hline
+    \end{tabular}
+    \end{center}
+    Substituting the GCD ($\textbf{14}$) 
+    into the penultimate Division Expression:
+    \begin{equation*}
+        \begin{aligned}
+        14  &=  42 - \textbf{(1)}(28)\\
+            &=  42 - \textbf{(1)}(70 - \textbf{(1)}(42))\\
+            &=  \textbf{(-1)}(70) + \textbf{(2)}(42)\\
+            &=  \textbf{(-1)}(70) + \textbf{(2)}(182 - \textbf{(2)}(70))\\
+            &=  \textbf{(-1)}(70) + \textbf{(2)}(182) - \textbf{(4)}(70)\\
+            &=  \textbf{(2)}(182) - \textbf{(5)}(70)\\
+        \therefore 
+        28  &=  \textbf{(4)}(182) - \textbf{(10)}(70)\\
+        \end{aligned}
+    \end{equation*}
+    Since \textbf{30} does not appear in the remainders in the table above,
+    it is \textbf{not} possible to attain $70c+182d=30$ with integers, $c$ and $d$.    
+    }
+\end{document}
