@@ -47,18 +47,18 @@ For $n$ people, the number of calls require to achieve the goal:
 C_n = 2n-4
 \end{equation}
 \is
-For $n+1$ people, pick one person, say $p_1$ and have another,
-say $p_2$ call $p_1$ to learn their rumor. This amounts to $1$ call:
+For $n+1$ people, pick one person, say $p_x$ and have another,
+say $p_y$ call $p_x$ to learn their rumor. This is one call:
 \begin{equation}
     C_{1,2} = 1
 \end{equation}
-The remaining $n$ people can share their rumor and that of $p_1$'s
-among themselves in $2n-4$ calls, using (1) above:
+The remaining $n$ people (excluding $p_x$) can learn all their rumor 
+and that of $p_x$'s in $2n-4$ calls, using (1) above:
 \begin{equation}
     C_{n} = 2n-4
 \end{equation}
-At this point, the only person remaining to be "caught up" is $p_1$, 
-who can call any of the other people, and that will be one more call:
+Now the only person remaining to be "caught up" is $p_x$, 
+who can call $p_y$ again. This will be one more call:
 \begin{equation}
     C_{1,x} = 1
 \end{equation}
