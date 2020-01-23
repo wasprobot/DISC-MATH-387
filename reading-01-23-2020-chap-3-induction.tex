@@ -1,0 +1,78 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsthm}
+\usepackage{natbib}
+\usepackage{graphicx}
+% COMMANDS
+\newcommand{\basis}{\newline \noindent {\bf Basis:} }
+\newcommand{\ih}{\newline \noindent {\bf Induction hypothesis:}  Assume }
+\newcommand{\is}{\newline \noindent {\bf Induction:} }
+
+\title{Proof By Induction}
+\author{Rohit Wason \\ \tt{rohit.wason@louisville.edu} }
+\date{}
+
+\begin{document}
+\maketitle
+
+\newtheorem*{thm}{Reading Exercise}
+
+\begin{thm}
+Suppose that in a gossiping village of $n$ people, 
+every resident knows exactly one rumor. Any resident can call another one over the phone,
+at which point they can share every rumor they know. 
+Show that if $n$ is at least $4$, then $2n-4$ phone calls is sufficient to achieve 
+that every resident knows every rumor.
+\end{thm}
+
+\begin{proof}
+By induction on $n$, the number of people.
+\basis
+Let $C_n$ denote the number of calls required to achieve the goal.
+For $n=4$, the 4 people ($p_1,p_2,p_3, p_4$) 
+will need to make the following calls (in this order):
+
+$p_{1,2}$ results in $p_1 = (1,2)$ and $p_2 = (1,2)$
+
+$p_{3,4}$ results in $p_3 = (3,4)$ and $p_4 = (3,4)$        
+
+$p_{2,3}$ results in $p_2 = (1,2,3,4)$ and $p_3 = (1,2,3,4)$        
+
+$p_{1,4}$ results in $p_1 = (1,2,3,4)$ and $p_4 = (1,2,3,4)$        
+
+Therefore, $C_4=4$
+\ih
+For $n$ people, the number of calls require to achieve the goal:
+\begin{equation}
+C_n = 2n-4
+\end{equation}
+\is
+For $n+1$ people, pick one person, say $p_1$ and have another,
+say $p_2$ call $p_1$ to learn their rumor. This amounts to $1$ call:
+\begin{equation}
+    C_{1,2} = 1
+\end{equation}
+The remaining $n$ people can share their rumor and that of $p_1$'s
+among themselves in $2n-4$ calls, using (1) above:
+\begin{equation}
+    C_{n} = 2n-4
+\end{equation}
+At this point, the only person remaining to be "caught up" is $p_1$, 
+who can call any of the other people, and that will be one more call:
+\begin{equation}
+    C_{1,x} = 1
+\end{equation}
+Adding the equations (2), (3) and (4),
+the total calls for $n+1$ people:
+\begin{equation}
+    C_{n+1} = 2n-4+1+1 = 2n+2-4 = 2(n+1) - 4
+\end{equation}
+
+The truth of the proposition fon a specific $n$ implies
+truth for $n+1$. Hence the proposition must be true for
+all $n>4$.
+\end{proof}
+
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}
