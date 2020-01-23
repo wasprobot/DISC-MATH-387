@@ -47,20 +47,20 @@ For $n$ people, the number of calls require to achieve the goal:
 C_n = 2n-4
 \end{equation}
 \is
-For $n+1$ people, pick one person, say $p_x$ and have another,
-say $p_y$ call $p_x$ to learn their rumor. This is one call:
+For $n+1$ people, one person, say $p_x$ calls another,
+say $p_y$ to tell their rumor. This is one call:
 \begin{equation}
-    C_{1,2} = 1
+    C_{x,y} = 1
 \end{equation}
 The remaining $n$ people (excluding $p_x$) can learn all their rumor 
-and that of $p_x$'s in $2n-4$ calls, using (1) above:
+and that of $p_x$'s in $2n-4$ calls (induction hypothesis):
 \begin{equation}
     C_{n} = 2n-4
 \end{equation}
-Now the only person remaining to be "caught up" is $p_x$, 
-who can call $p_y$ again. This will be one more call:
+Now $p_x$ gets "caught up" with the everybody else 
+by calling $p_y$ again. This will be one more call:
 \begin{equation}
-    C_{1,x} = 1
+    C_{x,y} = 1
 \end{equation}
 Adding the equations (2), (3) and (4),
 the total calls for $n+1$ people:
