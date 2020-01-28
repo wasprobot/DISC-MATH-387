@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\newcounter{question}
+\setcounter{question}{0}
+\begin{document}
+
+\newcommand\Que[1]{%
+   \leavevmode\par
+   \stepcounter{question}
+   \noindent
+   \thequestion. Q --- #1\par}
+
+\newcommand\Ans[2][]{%
+    \leavevmode\par\noindent
+   {\leftskip37pt
+    A --- \textbf{#1}#2\par}}
+
+\Que{
+    Consider a set X of 10 positive integers, none of which is greater than 100. Show that it has two distinct subsets whose elements have the same sum.
+    }
+\Ans{
+    The number of ways to choose $10$ numbers from ${1, 2, 3, ..., 100}$ are $ 100 \choose{10} $. Let's call these 'containers'.\\\\
+
+    From the set of $10$ numbers, the number of subsets $= 2^{10} = 1024 $. Let's call these 'items'.\\\\
+
+    According to the Pigeonhole Principle, there exists at least one 'container' with $\ceil[\Bigg]{\frac{{100 \choose {10}}}{1024}} $ number of items. 
+    This number is clearly larger than $ 2 $ so there are at least $ 2 $ distinct subsets whose elements have the same sum.
+    }
+\end{document}
