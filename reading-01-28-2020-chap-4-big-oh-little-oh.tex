@@ -1,0 +1,43 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\newcounter{question}
+\setcounter{question}{0}
+\begin{document}
+
+\newcommand\Que[1]{%
+   \leavevmode\par
+   \stepcounter{question}
+   \noindent
+   \thequestion. Q --- #1\par}
+
+\newcommand\Ans[2][]{%
+    \leavevmode\par\noindent
+   {\leftskip37pt
+    A --- \textbf{#1}#2\par}}
+
+\Que{
+    Explain why question \#2 from Section 4.2.1 takes $O(n^3)$ steps, 
+    and question \#3 takes $O(2^n)$ steps. This is mentioned in the text 
+    (with different wording, because the big-Oh notation is only introduced 
+    in the next section), but no detailed explanation is given. 
+    Do use the big-Oh notation in your explanation, at least in the conclusions.
+    }
+\Ans{
+    For \#2, the rough algorithm might be:\\
+
+    1) Pick $n_1$: which can be done in $n$ "passes" through the set $S$\\
+
+    2) Pick $n_2$: which can be done in $~n$ "passes" through the rest of the set $S$\\
+
+    3) Pick $n_3$: which can be done in $~n$ "passes" through the rest of the set $S$\\
+
+    Combined, these 3 series of operations can be performed in $~n^3$ steps, hence the $O(n^3)$.\\
+
+    Similarly, since there are $2^{n-1}-1$ \textit{complementary pairs} of sets to test for question \#3,
+    A computer will have to loop $2^{n-1}-1$ which is \textit{no more than} $2^n$ times to determine the answer.\\
+    }
+\end{document}
