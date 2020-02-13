@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\newcounter{question}
+\setcounter{question}{0}
+\begin{document}
+
+\newcommand\Que[1]{%
+   \leavevmode\par
+   \stepcounter{question}
+   \noindent
+   \thequestion. Q --- #1\par}
+
+\newcommand\Ans[2][]{%
+    \leavevmode\par\noindent
+   {\leftskip37pt
+    A --- \textbf{#1}#2\par}}
+
+\Que{  
+  Explain why every bipartite graph is perfect. 
+  (This is pretty easy.)
+  }
+\Ans{
+  For a graph $G$ if the clique number $\omega(G)$
+  were to be $> 2$, its chromatic number, $\chi(G)$
+  will have to be $> 2$ (it's not possible to 2-color a traingle).\\
+
+  Hence every bipartite graph is perfect ($\chi(G)=\omega(G)$).
+  }
+\end{document}
