@@ -1,0 +1,37 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\newcounter{question}
+\setcounter{question}{0}
+\begin{document}
+
+\newcommand\Que[1]{%
+   \leavevmode\par
+   \stepcounter{question}
+   \noindent
+   \thequestion. Q --- #1\par}
+
+\newcommand\Ans[2][]{%
+    \leavevmode\par\noindent
+   {\leftskip37pt
+    A --- \textbf{#1}#2\par}}
+
+\Que{
+  Alice and Bob are discussing a graph that has 
+  $17$ vertices and $129$ edges. 
+  Bob argues that the graph is Hamiltonian, 
+  while Alice says that he's wrong. 
+  Without knowing anything more about the graph, 
+  must one of them be right? If so, who and why, 
+  and if not, why not?
+}
+\Ans{
+  Without knowing if the graph is connected 
+  it is hard to say if the graph is Hamiltonian.
+}
+\end{document}
