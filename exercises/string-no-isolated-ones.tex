@@ -1,0 +1,57 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\newcounter{question}
+\setcounter{question}{0}
+\begin{document}
+
+\newcommand\Que[1]{%
+   \leavevmode\par
+   \stepcounter{question}
+   \noindent
+   \thequestion. Q --- #1\par}
+
+\newcommand\Ans[2][]{%
+    \leavevmode\par\noindent
+   {\leftskip37pt
+    A --- \textbf{#1}#2\par}}
+
+\Que{  
+    Number of binary strings of length $n$ with no isolated ones.
+}
+\Ans{
+    Let $S(n)$ be the desired number.\\
+
+    $S(0) = 1, \{''\}$\\
+
+    $S(1) = 1, \{0\}$\\
+
+    $S(2) = 2, \{00,11\}$\\
+
+    $S(3) = 4, \{000,
+    011,110,
+    111\}$\\
+    
+    $S(4) = 7, \{0000,
+    0011,0110,1100,
+    0111,1110,
+    1111\}$\\
+
+    $S(5) = 12, \{00000,
+    00011,00110,01100,11000,
+    00111,01110,11100,
+    \textbf{01111,11110,
+    11011,}
+    11111\}$\\\\
+
+    \textbf{The strings in bold are courtesy of Cristian!}. 
+    And we can establish that:\\
+
+    \boxed{$S(n)=S(n-1)+S(n-2)+S(n-4)$}
+}
+\end{document}

@@ -1,0 +1,76 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\newcounter{question}
+\setcounter{question}{0}
+\begin{document}
+
+\newcommand\Que[1]{%
+   \leavevmode\par
+   \stepcounter{question}
+   \noindent
+   \thequestion. Q --- #1\par}
+
+\newcommand\Ans[2][]{%
+    \leavevmode\par\noindent
+   {\leftskip37pt
+    A --- \textbf{#1}#2\par}}
+
+\Que{  
+    Let $S$ be the set of strings on the alphabet $\{0,1,2,3\}$
+    that do not contain $12$ or $20$ as a substring.
+    Give a recursion for the number $h(n)$ of strings
+    in $S$ of length $n$.
+}
+\Ans{\\
+
+    $h(0)=1, \{``"\}$\\
+
+    $h(1)=4, \{0,1,2,3\}$\\
+
+    $h(2)=14, \{00,01,02,03
+    ,10,11,13
+    ,21,22,23
+    ,30,31,32,33
+    \}$\\
+
+    A string could either end in $0$, $1$, $2$, or $3$\\
+
+    $h_2:$\
+
+    $-----2$ (good)\
+
+    $----12$ (bad)\
+
+    $ = h(n-1)-h(n-2) $\\
+
+    $h_0:$\
+
+    $-----0$ (good)\
+
+    $----20$ (bad)\
+
+    $ = h(n-1)-h_2 $\
+    
+    $ = h(n-1) - [h(n-2)-h(n-3)] $\\
+
+    $h_3:$\
+    
+    $-----3$ (good)\
+    
+    $ = h(n-1) $\\
+    
+    $h_1:$\
+
+    $-----1$ (good)\
+
+    $ = h(n-1) $\\
+
+    \boxed{$ h(n) = 4h(n-1) - 2h(n-2) + h(n-3) $}
+}
+\end{document}
