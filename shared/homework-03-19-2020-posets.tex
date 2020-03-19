@@ -1,0 +1,61 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\newcounter{question}
+\setcounter{question}{14}
+
+\tikzset{
+  mynode/.style={fill,circle,inner sep=2pt,outer sep=0pt}
+}
+
+\begin{document}
+
+\newcommand\Que[1]{%
+   \leavevmode\par
+   \stepcounter{question}
+   \noindent
+   \thequestion. Q) #1\par}
+
+\newcommand\Ans[2][]{%
+    \leavevmode\par\noindent
+   {\leftskip37pt
+    A) \textbf{#1}#2\par}}
+
+\Que{
+  Find an interval representation or
+  explain why one doesn't exist.
+  \begin{figure}
+    \centering
+    \def\svgwidth{\columnwidth}
+    \scalebox{0.3}{\input{image.pdf_tex}}
+  \end{figure}
+}
+\Ans{
+  We start with drawing the interval graph starting at
+  (4)\\
+  
+  \begin{tikzpicture}
+    \draw[thick] (0,0) -- (2,0) node[pos=0.5,label=above:4]{};
+    \draw[thick] (3,0) -- (5,0) node[pos=0.5,label=above:9]{};
+    \draw[thick] (6,0) -- (8,0) node[pos=0.5,label=above:3]{};
+    \draw[thick] (9,0) -- (11,0) node[pos=0.5,label=above:2]{};
+    \draw[thick] (12,0) -- (14,0) node[pos=0.5,label=above:5]{};
+
+    \draw[thick] (2.8,-1) -- (8.5,-1) node[pos=0.5,label=above:8]{};
+
+    \draw[thick] (1.8,-2) -- (5.5,-2) node[pos=0.5,label=above:6]{};
+    
+    \draw[thick, dashed, red] (6.8,-2) -- (13,-2) node[pos=0.5,label=above:1?]{};
+  \end{tikzpicture}\\
+
+  \textbf{Since (6) is less than both (3) and (1) 
+  and has no relation with (4), it is not clear
+  the relation between (4) and (1)}. Hence an interval graph
+  can not be drawn.
+}
+\end{document}
