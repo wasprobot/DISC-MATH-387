@@ -1,0 +1,108 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\newcounter{question}
+\setcounter{question}{0}
+\begin{document}
+
+\newcommand\Que[1]{%
+   \leavevmode\par
+   \stepcounter{question}
+   \noindent
+   \thequestion. Q --- #1\par}
+
+\newcommand\Ans[2][]{%
+    \leavevmode\par\noindent
+   {\leftskip37pt
+    A --- \textbf{#1}#2\par}}
+
+\Que{
+    Explain why there is no generating function $ \frac{1}{x} $. 
+    In general, try to figure out exactly what the rules are 
+    for dividing two generating functions.
+    }
+\Ans{
+    Trying to understand the claim  that $\frac{1}{1-x}$
+    is the Generating function $F(x)$ for which $(1-x)F(x)=1$.\\
+
+    Let $G(x) = 1-x = 1 + (-1)x + 0x^2 + \dots$\\
+    
+    and $F(x) = b_0 + b_1x + b_2x^2 + \dots$\\
+
+    Then according to Proposition $8.3$, $ F(x)G(x) $
+    represents the Generating Function on a sequence
+    whose $n^{th}$ term is:\\
+
+    $
+    c_n = (1)b_n + (-1)b_{n-1} + (0)b_{n-2} + \dots
+    $\\
+
+    Therefore $c_1 = (b_1 - b_0)$, 
+    $c_2 = (b_2 - b_1)$,
+    $c_3 = (b_3 - b_2)\dots$\\
+
+    The Generating Function $ F(x)G(x) $ must be:\\
+
+    $
+    c_0 + (b_1 - b_0)x + (b_2 - b_1)x^2 + \dots
+    $\\
+
+    \textcolor{red}{It's not clear to me how this $=1$.}\\
+
+    \noindent\rule{11cm}{0.4pt}\\
+
+    This is how I attempted answering the presented question:\\
+    
+    Let's assume there was a generating function $ F(x) = \frac{1}{x} $.
+    By simple arithmeric, it would follow that\\
+
+    $
+    xF(x) = 1
+    $\\
+
+    By definition of Generating Functions,\\
+
+    $
+    F(x) = \sum_{n=0}^{\infty}{a_nx^n}
+    = a_0 + a_1x + a_2x^2 + \dots
+    $\\
+
+    Therefore by the previous equality,\\
+
+    $
+    x \left[ a_0 + a_1x + a_2x^2 + \dots \right] = 1
+    $\\
+
+    The two Generating Functions in play here are:\\
+
+    $
+    1 = F(x) = (1) + (0)x + (0)x^2 + (0)x^3 + \dots
+    $\\
+
+    and
+    $
+    x = G(x) = (0) + (1)x + (0)x^2 + (0)x^3 + \dots
+    $\\
+
+    Therefore according to Proposition $8.3$, the $n^{th}$
+    term of the multplication, $ F(x)G(x) $ is:\\
+
+    $
+    a_0b_n + a_1b_{n-1} + a_2b_{n-2} + \dots
+    $\\
+
+    $
+    = (1)b_n + (0)b_{n-1} + (0)b_{n-2} + \dots
+    $\\
+
+    \textcolor{red}{And I got lost :)}\\
+
+    \noindent\rule{11cm}{0.4pt}\\
+
+    }
+\end{document}

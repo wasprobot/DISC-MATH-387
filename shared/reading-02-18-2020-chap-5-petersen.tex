@@ -1,0 +1,60 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\newcounter{question}
+\setcounter{question}{0}
+\begin{document}
+
+\newcommand\Que[1]{%
+   \leavevmode\par
+   \stepcounter{question}
+   \noindent
+   \thequestion. Q --- #1\par}
+
+\newcommand\Ans[2][]{%
+    \leavevmode\par\noindent
+   {\leftskip37pt
+    A --- \textbf{#1}#2\par}}
+
+\Que{  
+  Prove, without resorting to Kuratowski's Theorem,
+  that the Petersen's Graph is non-planar.
+  }
+\Ans{
+  The Petersen's Graph has the following parameters:\\
+
+  Number of vertices, $n=10$\\
+  
+  Number of edges, $m=15$\\
+
+  Also, the faces that exist in the graph are,
+  $f_5,f_6,f_7,f_8,f_9$, where $f_x$ is a face formed by an x-cycle.\\
+
+  If we start pairing $(e,F)$ for every edge, $e$ that touches a face, $F$,
+  the total number of such pairs,\\
+
+  $p=5f_5+6f_6+7f_7+8f_8+9f_9$\\
+
+  According to Euler's Theorem, if this graph were to be planar,
+  the following will hold: $n+f-m=2$ 
+  where $f$ is the total number of faces. Given the parameters
+  it follows that:\\
+
+  $f=7$\\
+
+  Also, $f=f_5+f_6+f_7+f_8+f_9$, the total number of faces.\\
+
+  $\therefore f_5+f_6+f_7+f_8+f_9=7$\\
+  
+  By a conservative estimate, $ f_5=3, f_6=f_7=f_8=f_9=1 $\\
+
+  $\therefore p \ge 45$\\
+
+  HELP!!
+  }
+\end{document}
