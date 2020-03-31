@@ -1,0 +1,222 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\newcounter{question}
+\setcounter{question}{0}
+\begin{document}
+
+\newcommand\Que[1]{%
+   \leavevmode\par
+   \stepcounter{question}
+   \noindent
+   \thequestion. Q --- #1\par}
+
+\newcommand\Ans[2][]{%
+    \leavevmode\par\noindent
+   {\leftskip37pt
+    A --- \textbf{#1}#2\par}}
+
+\Que{  
+    Can you repaint two six-sided dice such that
+    the distribution of getting the results 
+    is still the same, i.e.,
+    the number of ways for getting $(2, 3, 4, \dots)$ 
+    does not change.
+}
+\Ans{
+    Let's start with using the concept of \textbf{Generating Functions}
+    for a standard dice roll. In a standard dice there is one way to roll a $1$, 
+    one way to roll a $2$, and so on. This fact can be represented
+    as a Generating Function, one that generates the sequence of
+    all possibilities when rolling a dice as:\\
+
+    $1 \cdot x + 1 \cdot x^2 + 1 \cdot x^3 + 1 \cdot x^4 + 1 \cdot x^5 + 1 \cdot x^6$
+    — one way to roll each result. The powers of $x, 1, 2, 3 \dots$
+    are a notation to represent the face (result) that is rolled.\\
+
+    According to the similarities between algebra of polynomials 
+    and that of the Generating Functions, it follows that the representation
+    of rolling two six-faced dice is:\\
+
+    $(x+x^2+x^3+x^4+x^5+x^6)\cdot(x+x^2+x^3+x^4+x^5+x^6)$\\
+    
+    \begin{equation}
+        =(x+x^2+x^3+x^4+x^5+x^6)^2
+    \end{equation}\\
+
+    Hence the present question can be restated as if there
+    is a way to rewrite the expression $(1)$ as a product of 
+    two polynomials $P$ and $Q$, according to the \textbf{rules}:
+    \begin{enumerate}
+        \item The sum of coefficients of the terms in $P$ and $Q$ is $6$, each.
+        \item The exponents of $x$ are all non-zero integers.\\
+    \end{enumerate}
+
+    It can bee seen that voilating \#1 above would result in a dice that
+    is \textbf{not} 6-faced, and \#2 is necessary to make
+    Generating Functions work.\\
+
+    We start by factorizing $(1)$ as
+    a product of $P$ and $Q$ as follows:\\
+
+    $
+    \begin{aligned}
+        PQ\\
+        & = x^2(1+x+x^2+x^3+x^4+x^5)^2
+            && \text{factoring out $x$}\\
+        & = x^2(1+x)^2(1+x^2+x^4)^2
+            && \text{(factoring out $1+x$}\\
+        &   && \text{since $x=-1$ is a root}\\
+        &   && \text{$1 - 1 + 1 -1 + 1 - 1 = 0$,}\\
+        &   && \text{and using long-division).}\\
+    \end{aligned}
+    $\\
+
+    Now to factorize $(1+x^2+x^4)$ we observe that
+    it is a quadratic in $x^2$, $[1+(x^2) + (x^2)^2]$.
+    To solve the following for $x^2$:\\
+
+    \begin{equation}
+        1 + (x^2) + (x^2)^2 = 0
+    \end{equation}\\
+
+    $
+    x^2 = \frac{-b \pm \sqrt{b^2-4ac}}{2a}$\\
+
+    $
+    = \frac{-1 \pm \sqrt{-3}}{2}
+    = \frac{-1 \pm \sqrt{3}i}{2}
+    = -\frac{1}{2} \pm \frac{\sqrt{3}}{2} i$.\\
+
+    Solving for complex roots,\\
+
+    $
+    x = \pm \frac{1}{2} \pm \frac{\sqrt{3}}{2} i
+    $ are the 4 roots to (2). Lets call them
+    $r_1, \bar{r_1}, r_2, \bar{r_2}$.
+    These are \textbf{complex conjugate pairs}.
+    The sums \& products of the complex conjugates 
+    can be calculated as:\\
+
+    $
+    \boxed{
+        \begin{aligned}
+            r_1+\bar{r_1}\\
+            & = (\frac{1}{2} + \frac{\sqrt{3}}{2} i)
+            + (\frac{1}{2} - \frac{\sqrt{3}}{2} i)\\
+            & = 1\\
+            r_1\bar{r_1}\\
+            & = (\frac{1}{2} + \frac{\sqrt{3}}{2} i)
+            (\frac{1}{2} - \frac{\sqrt{3}}{2} i)\\
+            & = \frac{1}{4}-\frac{3}{4}(-1)\\
+            & = \frac{1}{4}+\frac{3}{4}\\
+            & = 1
+        \end{aligned}
+        }
+    $\\
+
+    Similar results can be found for $r_2$ and $\bar{r_2}$.
+    Therefore $(2)$ can be written as:\\
+
+    $
+    \begin{aligned}
+        1 + x^2 + x^4\\
+        & = (x-r_1)(x-\bar{r_1})(x-r_2)(x-\bar{r_2})\\
+        & = [x^2 - x(r_1+\bar{r_1}) + r_1\bar{r_1}]
+        [x^2 - x(r_2+\bar{r_2}) + r_2\bar{r_2}]\\
+        & = (x^2 - x + 1)(x^2 + x + 1)
+            && \text{(using properties}\\
+        &   && \text{of conjugates)}.
+    \end{aligned}
+    $\\
+
+    To continue factorizinbg $(1)$:\\
+
+    $
+    \begin{aligned}
+        (P)(Q)\\
+        & = x^2(1+x)^2(1 - x + x^2)^2(1 + x + x^2)^2
+            && \text{using (2) above}\\
+    \end{aligned}
+    $\\
+
+    We want to break this up as a product of $P,Q$
+    so they each represent a six-faced dice. The number
+    of coefficients carried by each of these terms
+    are as follows:\\
+
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    $(x)(x)$ & $(1+x)(1+x)$ & $(1 - x + x^2)(1 - x + x^2)$ & $(1 + x + x^2)(1 + x + x^2)$\\
+    \hline
+    $1+1$ & $2+2$ & $1+1$ & $3+3$ \\
+    \hline
+    \end{tabular}\\
+
+    Since we want each of $P,Q$ to contain $6$ 
+    as a sum of coefficients, we need the terms with
+    sums of $2$ and $3$ in each $P$ and $Q$:\\
+    
+    \begin{tabular}{|c|c|}
+    \hline
+    $P$ & $Q$ \\
+    \hline
+    $\left[(1+x)(1+x+x^2)\dots\right]$ 
+        & $\left[(1+x)(1+x+x^2)\dots\right]$ \\
+    \hline
+    \end{tabular}\\
+
+    On expansion in their current form, both $P$ and $Q$
+    would generate a \textbf{constant term} (one without a power of x)
+    which would amount to a face with no number on it. This is
+    against the rules of the desired dice (see above). 
+    To account for this this we must use an $x$ term in each $P$ and $Q$:\\
+    
+    \begin{tabular}{|c|c|}
+    \hline
+    $P$ & $Q$ \\
+    \hline
+    $\left[(x)(1+x)(1+x+x^2)\dots\right]$ 
+        & $\left[(x)(1+x)(1+x+x^2)\dots\right]$ \\
+    \hline
+    \end{tabular}\\
+
+    To use the remaining terms we have two choices.
+    We could use one in each $P$ and $Q$, but this
+    will result in two dice identical to the original ones.
+    The other choice is to use them both in either $P$ or $Q$:\\
+    
+    \begin{tabular}{|c|c|}
+    \hline
+    $P$ & $Q$ \\
+    \hline
+    $\left[(x)(1+x)(1+x+x^2)(1-x+x^2)\right]$ 
+        & $\left[(x)(1+x)(1+x+x^2)\right]$ \\
+    \hline
+    \end{tabular}\\
+
+    Upon expansion, the product $PQ$ looks like:\\
+
+    $
+    (x^8+x^6+x^5+x^4+x^3+x)
+    (x^4+2x^3+2x^2+x)
+    $,\\
+
+    both with non-zero coefficients, and the
+    sum of coefficients being $6$.\\
+
+    We now have the desired pair of non-standard dice painted:\\
+
+    $[8,6,5,4,3,1]$ and 
+    $[4,3,3,2,2,1]$.\\
+
+    Since this pair is derived from the original
+    pair of standard dice, the distribution of
+    getting the results $2, 3, 4 \dots$ is the same.
+    }
+\end{document}
