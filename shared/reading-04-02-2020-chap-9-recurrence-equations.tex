@@ -1,0 +1,53 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\newcounter{question}
+\setcounter{question}{0}
+\begin{document}
+
+\newcommand\Que[1]{%
+   \leavevmode\par
+   \stepcounter{question}
+   \noindent
+   \thequestion. Q --- #1\par}
+
+\newcommand\Ans[2][]{%
+    \leavevmode\par\noindent
+   {\leftskip37pt
+    A --- \textbf{#1}#2\par}}
+
+\Que{
+    Rewrite the Fibonacci equation using a polynomial of the advance operator, 
+    as in (9.3.1). What is $p(A)$? What is $g$? 
+    In the sentence under the expression (9.3.1), 
+    the text says "g is a fixed vector (function) from V", 
+    but they never define $V$. So what is this $V$?
+    }
+\Ans{
+    The linear recurrence equation of the Fibonacci sequence is:\\
+
+    $
+    F(n+2) = F(n+1) + F(n)
+    $\\
+
+    or $
+    F(n+2) - F(n+1) - F(n) = 0
+    $\\
+
+    The above can be represented with the polynomial
+    $p(A)$ of the advancement operator:\\
+
+    $
+    (A^2-A-1)f(n) = 0
+    $\\
+
+    hence $p(A) = A^2-A-1$ and $g=0$\\
+
+    What is $V$??
+    }
+\end{document}

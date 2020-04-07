@@ -1,0 +1,116 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{enumitem}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\newcounter{question}
+\setcounter{question}{0}
+\begin{document}
+
+\newcommand\Que[1]{%
+   \leavevmode\par
+   \stepcounter{question}
+   \noindent
+   \thequestion. Q --- #1\par}
+
+\newcommand\Ans[2][]{%
+    \leavevmode\par\noindent
+   {\leftskip37pt
+    A --- \textbf{#1}#2\par}}
+
+\Que{
+    For each generating function below, give a closed
+    form for the $n^{th}$ term of its associated sequence.
+    }
+\Ans{
+    Selected answers:
+    \begin{enumerate}[label=\alph*]
+        \item[a)]{
+            \begin{align*}
+                (1+x)^{10}
+                & = \Sigma_{n=0}^{\infty} {10 \choose n} x^n
+                && \text{(Newton's Binomial Theorem)}
+            \end{align*}
+            Therefore coefficient of the $n^{th}$ term:\\
+
+            $\boxed{a_n = {10 \choose n} }$\\
+        }
+        \item[b)]{
+            \begin{align*}
+                \frac{1}{1-x^4}
+                & = \frac{1}{(1-x)(1+x)(1+x^2)}\\
+                & = \frac{A}{(1-x)} + \frac{B}{(1+x)} + \frac{Cx+D}{(1+x^2)}\\
+                & = \frac{A(1+x)(1+x^2) + B(1-x)(1+x^2) + (Cx+D)(1-x^2)}{1-x^4}
+                && \text{(for all $x$)}\\
+                & \text{for $x=1$}, 4A = 1 \therefore \boxed{A=\frac{1}{4}}\\
+                & \text{for $x=-1$}, 4B = 1 \therefore \boxed{B=\frac{1}{4}}\\
+                & \text{ substituting:}\\
+                & (1+x)(1+x^2) + (1-x)(1+x^2)+4(Cx+D)(1-x^2) = 4\\
+                & x^3(-4C) + x^2(2-4D) + x(4C) + 4D = 2\\
+                & \therefore \boxed{C=0}, \boxed{D=\frac{1}{2}}\\
+                \frac{1}{1-x^4}
+                & = \frac{1}{4(1-x)} + \frac{1}{4(1+x)} + \frac{1}{2(1+x^2)}\\
+            \end{align*}
+            We know that
+            \begin{equation}
+                \frac{1}{1-x} = 1+x+x^2+x^3+\dots
+            \end{equation}
+
+            Substituting $-x$ for $x$,
+            \begin{equation}
+                \frac{1}{1+x} = 1-x+x^2-x^3+\dots
+            \end{equation}
+
+            Differentiating (2) w.r.t $x$,
+            \begin{align*}
+                \frac{d}{dx} (\frac{1}{1+x})
+                & = \frac{-1}{(1+x)^2}\\
+                & = -1+2x-3x^2+\dots
+            \end{align*}
+            \begin{equation}
+                \therefore \frac{1}{(1+x)^2} 
+                = 1-2x+3x^2-\dots\\
+            \end{equation}
+
+            \begin{align*}
+                \frac{1}{1-x^4}
+                & = \frac{1}{4} (1+x+x^2+x^3+\dots)
+                + \frac{1}{4} (1-x+x^2-x^3+\dots)
+                + \frac{1}{2} (1-2x+3x^2-\dots)\\
+                & = \frac{1}{4} (2+2x^2+2x^4+\dots)
+                + \frac{1}{2} (1-2x+3x^2-\dots)\\
+                & = \frac{1}{2} (1+x^2+x^4+\dots)
+                + \frac{1}{2} (1-2x+3x^2-\dots)\\
+                & = \frac{1}{2} (2-2x+4x^2-4x^3+6x^4-\dots)\\
+                & = 1-x+2x^2-2x^3+3x^4-\dots\\
+                & = \Sigma_{n=0}^{\infty}
+                    (-1)^n (n+\frac{1+(-1)^n}{2})) x^n\\
+                & = \Sigma_{n=0}^{\infty}
+                    (-1)^n \frac{2n+1+(-1)^n}{2} x^n
+            \end{align*}
+            Therefore coefficient of the $n^{th}$ term:\\
+
+            $\boxed{a_n = (-1)^n \frac{2n+1+(-1)^n}{2} }$\\
+            }
+        \item[e)]{
+            \begin{align*}
+                \frac{1+x^2-x^4}{1-x}\\
+                & = \frac{1}{1-x} + \frac{x^2}{1-x} - \frac{x^4}{1-x}\\
+                & = (1+x+x^2+x^3+\dots)
+                + x^2(1+x+x^2+x^3+\dots)
+                - x^4(1+x+x^2+x^3+\dots)\\
+                & = \Sigma^{\infty} x^n
+                + \Sigma^{\infty} x^{n+2}
+                - \Sigma^{\infty} x^{n+4}
+            \end{align*}
+            Therefore coefficient of the $n^{th}$ term:\\
+
+            $\boxed{a_n =  ?}$\\
+        }
+    \end{enumerate}
+    }
+\end{document}
