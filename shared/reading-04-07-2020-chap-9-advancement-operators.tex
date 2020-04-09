@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\newcounter{question}
+\setcounter{question}{0}
+\begin{document}
+
+\newcommand\Que[1]{%
+   \leavevmode\par
+   \stepcounter{question}
+   \noindent
+   \thequestion. Q --- #1\par}
+
+\newcommand\Ans[2][]{%
+    \leavevmode\par\noindent
+   {\leftskip37pt
+    A --- \textbf{#1}#2\par}}
+
+\Que{
+    Find an explicit formula for the recurrence:\\
+
+    $a_0=5, a_{n+1}=2a_{n}-2, n\ge1$
+    }
+\Ans{
+    The recurrence can be re-written as a 
+    \textbf{nonhomogenous advancement operator equation}:\\
+
+    $p(A)a = (A-2)a = -2$\\
+
+    $p(A)$ only has one root, $A=2$. 
+    A general solution to a homogenous equation of this
+    form is:\\
+
+    $a_1(n) = c{2}^n$\\
+
+    Let's try $a_0(n) = d(-2)^n$ from the R.H.S of the original equation.\\
+
+    \begin{align*}
+        (A-2)a_0(n) & = (A-2)d(-2)^n\\
+        & = d(-2)^{n+1} - 2d(-2)^n\\
+        & = d(-2)^{n+1} + d(-2)^{n+1}\\
+        & = 2d(-2)^{n+1}.\\
+    \end{align*}
+
+    If this were a solution to the nonhomogenous
+    equation,\\
+    
+    $(A-2)a_0(n) = 2d(-2)^{n+1} = -2$\\
+    
+    $\therefore d = -(-2)^{-n-1}$\\
+
+    Hence the general solution to the equation is:\\
+
+    $a(n) = a_1(n)+a_0(n) = -(-2)^{-n-1} + c2^n$\\
+
+    Since $a(0) = 5 = -(-2)^{-1} + c$,\\
+
+    $c = 5 + (-2)^{-1} = 5 - 1/2 = 9/2$\\
+
+    Therefore the exact formula for $a(n)$ is:\\
+
+    \begin{align*}
+        a(n) & = \frac{9}{2}2^{n} - (-2)^{-n-1}\\
+        & = \frac{9}{2^{n+1}}2^{2n} - \frac{(-1)^{n+1}}{2^{n+1}}\\
+        & = \boxed{\frac{9.2^{2n} + (-1)^n}{2^{n+1}}}\\
+    \end{align*}
+    }
+\end{document}

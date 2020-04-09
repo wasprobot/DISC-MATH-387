@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\newcounter{question}
+\setcounter{question}{0}
+\begin{document}
+
+\newcommand\Que[1]{%
+   \leavevmode\par
+   \stepcounter{question}
+   \noindent
+   \thequestion. Q --- #1\par}
+
+\newcommand\Ans[2][]{%
+    \leavevmode\par\noindent
+   {\leftskip37pt
+    A --- \textbf{#1}#2\par}}
+
+\Que{
+    Solve $ a_{n+1}=2a_{n}-2, n\ge1, a_0=5 $
+    using Generating Functions.
+    }
+\Ans{
+    This is a non-homogeneous recurrence function,
+    $2a_n - a_{n+1} = 2$. 
+    Let $f(x) = a_0 + a_1x + a_2x^2 + a_3x^3 + \dots$ 
+    represent the generating function of the desired sequence 
+    $\{a_n: n\ge{0}\}$. On multiplying both sides
+    of the recurrence by $x^n$ and summating, we obtain
+
+    \begin{equation}
+        2\Sigma{a_nx^n} 
+        - \Sigma{a_{n+1}x^n} 
+        = 2\Sigma{x^n}
+    \end{equation}
+    
+    Since $\Sigma{a_{n+1}x^n}$ 
+    has $a_{n+1}$ as the coefficient on $x_n$
+    and is missing $a_0$, it can be written as
+    $\frac{f(x)-a_0}{x} = \frac{f(x)-5}{x}$, 
+    using initial value.
+    Thus $(1)$ is re-written as
+    
+    \begin{equation}
+        2f(x)-\frac{f(x)-5}{x}
+        =2\Sigma{x^n}
+        =2\frac{1}{1-x}
+    \end{equation}
+
+    Simplifying:\\
+
+    $\frac{2xf(x)-f(x)+5}{x}
+    =\frac{2}{1-x}$\\
+
+    $2xf(x)-f(x)+5
+    =\frac{2x}{1-x}$\\
+
+    $f(x)(2x-1)
+    =\frac{2x}{1-x} - 5$
+
+    \begin{equation}
+        f(x)
+        =\frac{5-7x}{(1-2x)(1-x)}
+    \end{equation}
+
+    Using partial factorization,
+    $ f(x) = \frac{A}{1-2x} + \frac{B}{1-x}
+     = \frac{A(1-x) + B(1-2x)}{(1-2x)(1-x)}$.
+    I.e.,
+    $5-7x = A(1-x) + B(1-2x)$ for all $x$.
+    Using $x=1$, $B=2$ and using
+    $x=\frac{1}{2}$, $A=3$. Thus $(3)$
+    is re-written as
+
+    \begin{align*}
+        f(x) & = \frac{3}{1-2x} + \frac{2}{1-x}\\
+        & = 3\Sigma{2^nx^n} + 2\Sigma{x^n}
+        && \text{(using Geometric Series)}
+    \end{align*}
+
+    We now observe that the coefficient
+    on $x^n$ in $f(x)$ is:\\
+
+    \boxed{
+    a_n = 3\cdot{2^n}+2
+    }\\
+
+    which is the desired solution.
+    }
+\end{document}
