@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\newcounter{question}
+\setcounter{question}{0}
+\begin{document}
+
+\newcommand\Que[1]{%
+   \leavevmode\par
+   \stepcounter{question}
+   \noindent
+   \thequestion. Q --- #1\par}
+
+\newcommand\Ans[2][]{%
+    \leavevmode\par\noindent
+   {\leftskip37pt
+    A --- \textbf{#1}#2\par}}
+
+\Que{
+    Determine the explicit formula
+    for $t_n$, the fewest moves in which
+    you can solve the problem of
+    \textbf{Towers of Hanoi}.
+}
+\Ans{
+    Let $p_1, p_2, p_3$ be the three pegs and
+    $t_n$ be the number of minimum moves 
+    required to move $n$ disks ($d_1, d_2, \dots, d_n$)
+    from peg $p_1$ to $p_3$,
+    using $p_2$ as an intermediary. \\
+
+    To accomplish this, we first move $n-1$ disks
+    from $p1$ to $p_2$, using $p_3$ 
+    as an intermediary ($t_{n-1}$ moves);
+    move the largest disk ($d_n$) from
+    $p_1$ to $p_3$ ($1$ move); and finally
+    move the $n-1$ disks from $p_2$ to $p_3$,
+    using $p_1$ as an intermediary ($t_{n-1}$ moves).
+    Hence we see that $t_n = 2t_{n-1} + 1, t_1=1$.
+    On simplifying:
+
+    \begin{equation}
+        t_n-2t_{n-1}=1
+    \end{equation}
+
+    This is a non-homogeneous equation
+    which can be written as an 
+    \textit{advancement operator equation}
+    $(A-2)f = 1, f(1)=1$.
+    For the homogenous part
+    $(A-2)f=0$ or $Af = 2f$, the solution would be a function
+    whose terms double with each progression, we can
+    say that $f_1(n)=c_1{2^n}$ is a solution. \\
+
+    For the non-homogeneous part
+    let $c_2$ be a \textit{particular solution} to
+    the equation. On trying it out in the equation,
+    $c_2-2c_2=1$ we get $c_2=-1$.
+    Therefore the solution
+    to the original equation is:
+    $t(n)=c_12^n-1$.
+    However using the initial condition,
+    $t(1)=1$, we have $2c_1-1=1$ or $c_1=1$.\\
+
+    Hence the explicit formula that we desire is
+    \boxed{t(n) = 2^n-1}.
+    }
+\end{document}
