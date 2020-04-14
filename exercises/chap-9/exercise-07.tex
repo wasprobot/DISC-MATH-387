@@ -43,7 +43,6 @@
     To see if combined, $f_1$ and $f_2$ give us
     all the solutions to the advancement operator
     equation, we substitute $f(n) = c_12^n + c_2(-5)^n$.
-
     \begin{align*}
         (A+5)(A-2)f(n) &= (A+5)(A-2)(c_12^n + c_2(-5)^n)\\
         & = (A+5)(
@@ -61,10 +60,11 @@
         & = -7c_2(-5(-5)^{n} + 5(-5)^{n})\\
         & = 0\\
         \therefore
-        f(n) & = c_12^n + c_2(-5)^n \text{ are the solutions.}\\
-        f(0) & = c_1 + c_2 = 2\\
-        f(1) & = 2c_1 - 5c_2 = 10\\
-        & (c_1 = \frac{20}{7}, c_2 = -\frac{6}{7})\\
+        f(n) & = c_12^n + c_2(-5)^n \text{ are the solutions.}\\        
+        f(0) & = c_1 + c_2 = 2,\\
+        f(1) & = 2c_1 - 5c_2 = 10
+        \text{ (using initial conditions)}\\
+        c_1 & = \frac{20}{7}, c_2 = -\frac{6}{7}\\
         & \boxed{f(n) = \frac{20}{7}2^n - \frac{6}{7}(-5)^n}
     \end{align*}
 
