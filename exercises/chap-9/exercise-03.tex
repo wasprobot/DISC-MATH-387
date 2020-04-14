@@ -1,0 +1,129 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\newcounter{question}
+\setcounter{question}{0}
+\begin{document}
+
+\newcommand\Que[1]{%
+   \leavevmode\par
+   \stepcounter{question}
+   \noindent
+   \thequestion. Q --- #1\par}
+
+\newcommand\Ans[2][]{%
+    \leavevmode\par\noindent
+   {\leftskip37pt
+    A --- \textbf{#1}#2\par}}
+
+\Que{
+    Find the general solution of the recurrence equation\\
+    $g_{n+2} = 3g_{n+1}-2g_n$.
+}
+\Ans{
+    The recurrence can be written as a homogenous
+    equation, \\
+    $g_{n+2} - 3g_{n+1} + 2g_n=0$. On summating:
+    \begin{equation}
+        \sum_{n=0}^\infty {g_{n+2}} 
+        - 3\sum_{n=0}^\infty {g_{n+1}} 
+        + 2\sum_{n=0}^\infty {g_n}=0
+    \end{equation}
+
+    Let $f(x)$ represent the generating function for the sequence
+    $\{r_n\colon n\geq 0\}$:
+    \begin{equation*}
+        f(x) = \sum_{n=0}^\infty g_n x^n 
+        = g_0+g_1x+g_2x^2+g_3x^3+\cdots
+    \end{equation*}
+    
+    Multiplying $(1)$ by $x^n$:
+    \begin{equation}
+        \sum_{n=0}^\infty {g_{n+2}x^n} 
+        - 3\sum_{n=0}^\infty {g_{n+1}x^n} 
+        + 2\sum_{n=0}^\infty {g_nx^n} = 0
+    \end{equation}
+    
+    We observe that:
+    \begin{align*}
+        \sum_{n=0}^\infty {g_{n+2}x^n} & = 
+        g_2+g_3x+g_4x^2+g_5x^3+\cdots\\
+        x^2\sum_{n=0}^\infty {g_{n+2}x^n} & = 
+        g_2x^2+g_3x^3+g_4x^4+g_5x^5+\cdots\\
+        & = f(x) - g_0 - g_1x\\
+        \therefore
+        \sum_{n=0}^\infty {g_{n+2}x^n} & = 
+        \frac{f(x) - g_0 - g_1x}{x^2}
+    \end{align*}
+
+    Also that:
+    \begin{align*}
+        \sum_{n=0}^\infty {g_{n+1}x^n} & = 
+        g_1+g_2x+g_3x^2+g_4x^3+\cdots\\
+        x\sum_{n=0}^\infty {g_{n+1}x^n} & = 
+        g_1x+g_2x^2+g_3x^3+g_4x^4+\cdots\\
+        & = f(x) - g_0\\
+        \therefore
+        \sum_{n=0}^\infty {g_{n+1}x^n} & = 
+        \frac{f(x) - g_0}{x}
+    \end{align*}
+
+    Therefore $(2)$ can be re-written as:
+    \begin{equation}
+        \frac{f(x) - g_0 - g_1x}{x^2}
+        - 3\frac{f(x) - g_0}{x}
+        + 2f(x) = 0
+    \end{equation}
+
+    Simplifying:
+    \begin{equation}
+        \frac{
+            f(x) - g_0 - g_1x
+            - 3(f(x)x^2 - g_0x^2)
+            + 2f(x)x^2
+        }{x^2}
+        = 0
+    \end{equation}
+    \begin{align*}
+        f(x)(1-x^2)
+        - g_0 - g_1x
+        + 3g_0x^2
+        & = 0\\
+        f(x)(1-x^2)
+        & =
+        g_0 + g_1x
+        - 3g_0x^2\\
+        f(x)
+        & =
+        \frac{g_0 + g_1x - 3g_0x^2}{1-x^2}\\
+        & = \frac{g_0 + g_1x - 3g_0x^2}{(1+x)(1-x)}\\
+        & = \frac{A}{1+x} + \frac{B}{1-x}\\
+        & = \frac{A(1-x)+B(1+x)}{1-x^2}\\
+        & = \frac{(A+B) + x(B-A)}{1-x^2}\\
+        \frac{g_0 + g_1x - 3g_0x^2}{1-x^2}
+        & = \frac{(A+B) + x(B-A)}{1-x^2}\\
+        A+B & = g_0\\
+        B-A & = g_1\\
+        2B & = g_0 + g_1, B = \frac{g_0+g_1}{2}\\
+        \text{and, } 2A & = g_0 - g_1, A = \frac{g_0-g_1}{2}\\
+        f(x) & = \frac{g_0-g_1}{2(1+x)} + \frac{g_0+g_1}{2(1-x)}\\
+    \end{align*}
+
+    Using the geometric series expansion of $\frac{1}{1-x}$
+    and $\frac{1}{1+x}$, we conclude that
+    $
+        f(x) = \frac{g_0-g_1}{2} \sum{(-1)^nx^n}
+        + \frac{g_0+g_1}{2} \sum{x^n}
+    $. In other words\\
+    
+    \boxed{
+        r_n = \frac{g_0-g_1}{2} (-1)^n
+        + \frac{g_0+g_1}{2}
+    }
+}
+\end{document}
