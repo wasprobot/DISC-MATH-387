@@ -1,0 +1,74 @@
+(1) Find the explicit formula for $a_n$, where
+    $a_n = 2^n - 4a_{n-1} - 4a_{n-2}$, with
+    $a_0 = 1$ and $a_1 = 2$.\\
+
+    \textit{(Solution)}\\
+
+    If $a(n)$ be considered a generating function
+    whose solution represents the $n^{th}$ value ($a_n$),
+    this recursion can be expressed as a
+    non-homogeneous advancement operator
+    equation on $a$ as $(A^2+4A+4)a = 2^n$
+    with $a(0)=1$ and $a(1)=2$. Or
+    \begin{equation}
+        (A+2)^2a=2^n
+    \end{equation}
+    
+    Let's first consider the homogeneous part:
+    \begin{equation}
+        (A+2)^2a=0
+    \end{equation}
+    
+    Since (2) is a polynomial of degree
+    2, it must have a solution of the form of 2-parameters.
+    One particular solution appears from the equality
+    $(A+2)a=0$ or $Aa = -2a$. This is an advancement operator
+    that multiplies the value of the function by $-2$
+    at each succession. Hence the particular solution
+    is $a_1=(-2)^n$. Let's try the other particular solution to be
+    $a_2=n(-2)^n$:
+    \begin{align*}
+        (A+2)^2a_2 &= (A+2)(A+2)a_2\\
+        &= (A+2)(A+2)n(-2)^n\\
+        &= (A+2)\left[
+            (n+1)(-2)^{n+1} + 2n(-2)^n
+            \right]\\
+        &= (n+2)(-2)^{n+2} + 2(n+1)(-2)^{n+1}
+        + 2(n+1)(-2)^{n+1} + 4n(-2)^n\\
+        &= (n+2)(-2)^{n+2} 
+        + 4(n+1)(-2)^{n+1}
+        + 4n(-2)^n\\
+        &= (n+2)(-2)^{n+2} 
+        - 2(n+1)(-2)^{n+2}
+        + 4n(-2)^n\\
+        &= -n(-2)^{n+2} 
+        + 4n(-2)^n\\
+        &= -4n(-2)^{n} 
+        + 4n(-2)^n\\
+        &= 0
+    \end{align*}
+    Hence the homogeneous part of the solution to (1),
+    $a_h=c_1(-2)^n + c_2n(-2)^n$. Now for the non-homogeneous
+    part, let's try a few particular solutions:\\
+
+    \textit{guess \#1}:
+    \begin{align*}
+        a_{nh} &= c_32^n
+        \text{. Plugging it into (1):}\\
+        c_32^n &= 2^n - 4c_32^{n-1} - 4c_32^{n-2}\\
+        &= 2^n - 2c_32^{n} - c_32^{n}\\
+        &= 2^n - 3c_32^{n}\\
+        c_3 & = \frac{1}{4}\\
+    \end{align*}
+    The explicit formula for $a_n$ is given by combining
+    the homogeneous and the non-homogeneous parts:
+    \begin{align*}
+        a_n &= c_1(-2)^n + c_2n(-2)^n+\frac{2^n}{4}\\
+        1 &= c_1 + 0 + \frac{1}{4},
+        2 = c_1(-2) + c_2(1)(-2) + \frac{2}{4}
+        \text{, using initial conditions.}\\
+        c_1 &= \frac{3}{4}, c_2=-\frac{3}{2}\\
+        a_n &= (-2)^n(\frac{3}{4} - \frac{3n}{2}) + \frac{2^n}{4}\\
+        &= \boxed{(-2)^n(\frac{6-3n}{4}) + \frac{2^n}{4}}
+    \end{align*}
+    

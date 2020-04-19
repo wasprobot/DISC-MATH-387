@@ -1,0 +1,30 @@
+(3) How many positive integers smaller than one million 
+    have digits that sum to 25?\\
+
+    \textit{(Solution)}\\
+
+    The numbers smaller than one million can be written as
+    $a_1a_2a_3a_4a_5a_6$ with $0 \le a_i \le 9$. The possibilities
+    of each $a_i$ can be represented by the generating function:\\
+
+    $A(x) = 1+x^2+x^3\dots+x^9$. Since all $a_i$ are stringed together,
+    the possibilities of their sums is $A(x)\cdot A(x)\cdot A(x)\cdot A(x)\cdot A(x)\cdot A(x)$
+    \begin{align*}
+        &= (1+x^2+x^3\dots+x^9)^6\\
+        &= (\frac{1-x^{10}}{1-x})^6\\
+        &= \frac{1}{(1-x)^6} - \frac{x^{16}}{(1-x)^6}\\
+        \frac{1}{1-x} &= 1+x+x^2+x^3+\dots\\
+        \frac{d}{dx}\frac{1}{1-x} = \frac{-1}{(1-x)^2}
+        &= 1+2x+3x^2+4x^3+5x^4+6x^5+7x^6+8x^7+9x^8+\dots\\
+        \frac{d}{dx}\frac{-1}{(1-x)^2} = \frac{2}{(1-x)^3}
+        &= 2+6x+12x^2+20x^3+30x^4+42x^5+56x^6+72x^7+\dots\\
+        \frac{d}{dx}\frac{2}{(1-x)^3} = \frac{-6}{(1-x)^4}
+        &= 6+24x+60x^2+120x^3+210x^4+336x^5+504x^6+\dots\\
+        \frac{d}{dx}\frac{-6}{(1-x)^4} = \frac{24}{(1-x)^5}
+        &= 24+120x+360x^2+840x^3+1680x^4+3024x^5+\dots\\
+        \frac{d}{dx}\frac{24}{(1-x)^5} = \frac{-120}{(1-x)^6}
+        &= 120+720x+2520x^2+6720x^3+15120x^4+\dots\\
+        \frac{1}{(1-x)^6}
+        &= -(1+6x+21x^2+56x^3+126x^4+\dots)\\
+    \end{align*}
+

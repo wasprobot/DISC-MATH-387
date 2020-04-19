@@ -1,0 +1,69 @@
+(8) How many binary sequences of length n are there (consisting 0’s and 1’s)
+    with no consecutive 1’s, except in the rightmost two positions? Explicit
+    formula is required.\\
+
+    \textit{(Solution)}\\
+
+    We see by observation that the number of desired sequences
+    of length  $1, a_1=2$, the sequences $\{0\},\{1\}$ and 
+    $a_2=4$, the sequences $\{00\},\{01\},\{10\},\{11\}$. Beyond
+    this, a sequence (length $> 2$) may start with a $0$ and using
+    all valid sequences of length $(n-1)$, i.e., $a_{n-1}$. Alternatively,
+    the sequence may start with a $11$ (which would be invalid since
+    length $>2$ and this will indicate that there are consecutive 1's
+    that are not in the end). The only other possibility is when the 
+    sequence starts with a $10$ and uses the valid sequences of length
+    $(n-2)$, i.e. $a_{n-2}$. We see that a recurrence relation appears
+    \begin{equation*}
+        a_n = a_{n-1} + a_{n-2}
+        \text{ (for $n > 2$, with $a_1=2, a_2=4$)}
+    \end{equation*}
+    \begin{equation*}
+        a_{n+2} = a_{n+1} + a_{n}
+        \text{ (for $n \ge 0$)}
+    \end{equation*}
+    Let $f(x)$ be the a generating function for the sequence 
+    $\{a_n:n>2\}$
+    \begin{equation*}
+        f(x) = \sum_{n=0}^{\infty}a_nx^n = a_0 + a_1x + a_2x^2 + \dots
+    \end{equation*}
+    Multiplying the original recurrence relation by $x^n$
+    and summating
+    \begin{align*}
+        \sum_{n=0}^{\infty}{a_{n+2}x^n} 
+        & = \sum_{n=0}^{\infty}{a_{n+1}x^n} 
+        + \sum_{n=0}^{\infty}{a_nx^n}\\
+        \frac{1}{x^2}\sum_{n=0}^{\infty}{a_{n+2}x^{n+2}} 
+        & = \frac{1}{x}\sum_{n=0}^{\infty}{a_{n+1}x^{n+1}} 
+        + \sum_{n=0}^{\infty}{a_{n}x^{n}}\\
+        \frac{1}{x^2}(f(x)-a_0-a_1x) 
+        & = \frac{1}{x}(f(x)-a_0)
+        + f(x)\\
+        \frac{1}{x^2}(f(x)-1-2x) 
+        & = \frac{1}{x}(f(x)-1)
+        + f(x)\\
+        f(x)-1-2x
+        & = xf(x)-x + x^2f(x)\\
+        f(x)(1-x-x^2) & = 1+x\\
+        f(x) & = \frac{1+x}{1-x-x^2}\\
+        f(x) & = \frac{1+x}{(x-r_+)(x-r_-)}\\
+        \text{where }r_{\pm} & = \frac{-1\mp\sqrt{5}}{2}, 
+        (r_++r_-)=-1\\
+        f(x) & = \frac{A}{x-r_+} + \frac{B}{x-r_-}\\
+        & = \frac{A(x-r_-)+B(x-r_+)}{(x-r_+)(x-r_-)}\\
+        1+x& = (A+B)x-(Ar_-+Br_+)\\
+        & A=-(r_++1), B=1-r_-\\
+        f(x) & = \frac{-(r_++1)}{x-r_+} + \frac{1-r_-}{x-r_-}\\
+        & = \frac{r_++1}{r_+-x} + \frac{r_--1}{r_--x}\\
+        & = (1+\frac{1}{r_+}) \frac{1}{1-\frac{x}{r_+}}
+        + (1-\frac{1}{r_-}) \frac{1}{1-\frac{x}{r_-}}\\
+        & = (1+\frac{1}{r_+}) \sum{(\frac{1}{r_+})^nx^n}
+        + (1-\frac{1}{r_-}) \sum{(\frac{1}{r_-})^nx^n}
+    \end{align*}
+    The coefficient of the $n^{th}$ term,
+    \begin{equation*}
+        \boxed{
+            a_n = (1+\frac{1}{r_+}) (\frac{1}{r_+})^n
+            + (1-\frac{1}{r_-}) (\frac{1}{r_-})^n
+        }
+    \end{equation*} where $r_{\pm} = \frac{-1\mp\sqrt{5}}{2}$.

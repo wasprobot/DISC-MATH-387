@@ -1,0 +1,54 @@
+(7) How many ways can we distribute n different objects to 4 different boxes if
+    at least one object is distributed to box 1, and an odd number of objects
+    is distributed to box 4.\\
+
+    \textit{(Solution)}\\
+
+    The exponential generating functions for finding 
+    the ways n different objects can be distributed among 4 boxes
+    can be written as:\\
+
+    $a_2,a_3 = \sum_{n=0}^{\infty}{\frac{x^n}{n!}}$, 
+    no restrictions. This is also the infinity expansion of
+    $e^x$.\\
+
+    $a_1 = \sum_{n=1}^{\infty}{\frac{x^n}{n!}}$, 
+    since at least one object is required.
+    This is equivalent to $e^x-1$.\\
+
+    $a_4 = x + \frac{x^3}{3!} + \frac{x^5}{5!} + \frac{x^7}{7!} + \dots$, 
+    only odd \# of objects.
+    \begin{align*}
+        1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \dots &= e^x\\
+        -1 + x - \frac{x^2}{2!} + \frac{x^3}{3!} + \dots &= -e^{-x}\\
+        a_4 = x + \frac{x^3}{3!} + \frac{x^5}{5!} + \frac{x^7}{7!} + \dots
+        &= \frac{e^x-e^{-x}}{2}
+    \end{align*}
+    The \# of ways for the desired distribution, $N$
+    is the coefficient of the $\frac{x^n}{n!}$ term in the expansion
+    of the product of these 4 terms:\\
+    \begin{align*}
+        S(n) &= e^{2x} \cdot (e^x-1) \cdot \frac{e^x-e^{-x}}{2}\\
+        &= (e^{3x}-1) \cdot \frac{e^x-e^{-x}}{2}\\
+        &= \frac{e^{4x}-e^{2x} - e^x + e^{-x}}{2}\\
+        &= \frac{1}{2}\left[
+            \sum{\frac{(4x)^n}{n!}}
+            - \sum{\frac{(2x)^n}{n!}}
+            - \sum{\frac{(x)^n}{n!}}
+            + \sum{\frac{(-x)^n}{n!}}
+            \right]\\
+        &= \frac{1}{2}\left[
+            \sum{\frac{(4)^n(x)^n}{n!}}
+            - \sum{\frac{(2)^n(x)^n}{n!}}
+            - \sum{\frac{(x)^n}{n!}}
+            + \sum{\frac{(-1)^n(x)^n}{n!}}
+            \right]
+    \end{align*}
+    Therefore $[a_n]S(n) = \boxed{\frac{1}{2}\left[
+        (4)^n
+        - (2)^n
+        - 1
+        + (-1)^n
+        \right]}$
+
+    
